@@ -2,10 +2,15 @@
 //
 
 #include <iostream>
+using namespace std;
+
+
+
+class plansza;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //jjjj
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
