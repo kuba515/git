@@ -2,15 +2,76 @@
 //
 
 #include <iostream>
+#include <conio.h>
 using namespace std;
 
 
 
-class plansza;
+class plansza {
+	int tabl[8][8];
+	int tabs[16][16];
+	int tabt[32][16];
+	//ml-latwa tablica,ms-srednia tablica,mt-truDNA TABLICA
+	void wypiszdanelt(int tabl[8][8]) {
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++) {
+				tabl[i][j] = i * j;
+			}
+		}
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				cout << tabl[i][j] << "\t";
+			}
+			cout << endl;
+
+		}
+		
+
+	}
+	void wypiszdanest(int tabs[16][16]) {
+		for (int h = 8; h < 16; h++) {
+
+			for (int g = 0; g < 16; g++) {
+				tabs[h][g] = h * g;
+
+			}
+		}
+		for (int h = 0; h < 16;h++) {
+			for (int g = 0; g < 16; g++) {
+				cout << tabs[h][g] << "\t";
+			}
+			cout << endl;
+
+		}
+
+	}
+	void wypiszdanett(int tabt[32][16]) {
+		for (int a = 0; a < 32; a++) {
+			for (int b = 0; b < 16; b++) {
+				tabt[a][b] = a * b;
+			}
+		}
+		for (int a = 0; a < 32; a++) {
+			for (int b = 0; b < 16; b++) {
+				cout << tabt[a][b] << "\t";
+			}
+			cout << endl;
+		}
+	}
+
+};
+
+
+
+
+ 
 
 int main()
 {
-    //jjjj
+	plansza wypiszdanelt(); cout<< endl;
+	plansza wypiszdanest(); cout << endl;
+	plansza wypiszdanett(); cout << endl;
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
