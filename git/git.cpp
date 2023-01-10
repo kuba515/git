@@ -7,12 +7,12 @@ using namespace std;
 
 
 
-class plansza {
+int** tab;
 	int tabl[8][8];
 	int tabs[16][16];
 	int tabt[32][16];
 	//ml-latwa tablica,ms-srednia tablica,mt-truDNA TABLICA
-	void wypiszdanelt(int tabl[8][8]) {
+	void wypiszdanelt() {
 		for (int i = 0; i < 8; i++)
 		{
 			for (int j = 0; j < 8; j++) {
@@ -29,7 +29,7 @@ class plansza {
 		
 
 	}
-	void wypiszdanest(int tabs[16][16]) {
+	void wypiszdanest() {
 		for (int h = 8; h < 16; h++) {
 
 			for (int g = 0; g < 16; g++) {
@@ -46,7 +46,7 @@ class plansza {
 		}
 
 	}
-	void wypiszdanett(int tabt[32][16]) {
+	void wypiszdanett() {
 		for (int a = 0; a < 32; a++) {
 			for (int b = 0; b < 16; b++) {
 				tabt[a][b] = a * b;
@@ -59,8 +59,8 @@ class plansza {
 			cout << endl;
 		}
 	}
+	
 
-};
 
 
 
@@ -69,9 +69,11 @@ class plansza {
 
 int main()
 {
-	plansza wypiszdanelt(); cout<< endl;
-	plansza wypiszdanest(); cout << endl;
-	plansza wypiszdanett(); cout << endl;
+	wypiszdanelt();
+	wypiszdanest();
+	wypiszdanett();
+
+
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
