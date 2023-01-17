@@ -6,7 +6,7 @@
 using namespace std;
 
 
-
+// bomba
 int** tab;
 	int tabl[8][8];
 	int tabs[16][16];
