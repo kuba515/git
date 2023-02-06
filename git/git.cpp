@@ -53,3 +53,19 @@ void makeMove(int* x, int* y)
 	*x = a;
 	*y = b;
 }
+
+void makeFlag(int* x, int* y)
+{
+	int fx, fb;
+	cout << "Wpisz x i y flagi -> " << endl;
+	cin >> fx;
+	cin >> fb;
+	*x = fx;
+	*y = fb - 1;
+	if (flag[fx][fb] == true) {
+		flag[fx][fb] = false;
+	}
+	else {
+		flag[fx][fb] = true;
+	}
+
