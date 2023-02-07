@@ -242,3 +242,348 @@ bool playMinesweeperUtil(char myBoard[][MAXSIDE], char realBoard[][MAXSIDE],
 	}
 }
 
+void placeMines(int mines[][2], char realBoard[][MAXSIDE])
+{
+	bool mark[MAXSIDE * MAXSIDE];
+
+	memset(mark, false, sizeof(mark));
+
+	for (int i = 0; i < MINES; )
+	{
+		int random = rand() % (SIDE * SIDE);
+		int x = random / SIDE;
+		int y = random % SIDE;
+
+		if (mark[random] == false)
+		{
+			mines[i][0] = x;
+			mines[i][1] = y;
+
+			realBoard[mines[i][0]][mines[i][1]] = '*';
+			mark[random] = true;
+			i++;
+		}
+	}
+}
+
+
+void initialise(char realBoard[][MAXSIDE], char myBoard[][MAXSIDE])
+{
+	srand(time(NULL));
+	for (int i = 0; i < SIDE; i++)
+	{
+		for (int j = 0; j < SIDE; j++)
+		{
+			myBoard[i][j] = realBoard[i][j] = '-';
+		}
+	}
+}
+
+
+void replaceMine(int row, int col, char board[][MAXSIDE])
+{
+	for (int i = 0; i < SIDE; i++)
+	{
+		for (int j = 0; j < SIDE; j++)
+		{
+
+			if (board[i][j] != '*')
+			{
+				board[i][j] = '*';
+				board[row][col] = '-';
+			}
+		}
+	}
+}
+
+
+
+
+void playMinesweeper()
+{
+
+	bool gameOver = false;
+
+
+	char realBoard[MAXSIDE][MAXSIDE], myBoard[MAXSIDE][MAXSIDE];
+
+	int movesLeft = SIDE * SIDE - MINES, x, y;
+	int mines[MAXMINES][2];
+
+	initialise(realBoard, myBoard);
+
+
+	placeMines(mines, realBoard);
+
+
+
+	int currentMoveIndex = 0;
+	while (gameOver == false)
+	{
+		system("cls");
+		printBoard(myBoard);
+		int in;
+		cout << "0. zaznacz puste" << endl;
+		cout << "1. zaznacz flage" << endl;
+		cin >> in;
+		if (in == 0) {
+			makeMove(&x, &y);
+			if (currentMoveIndex == 0)
+			{
+				if (isMine(x, y, realBoard) == true)
+					replaceMine(x, y, realBoard);
+			}
+
+			currentMoveIndex++;
+
+			gameOver = playMinesweeperUtil(myBoard, realBoard, mines, x, y, &movesLeft);
+
+			if ((gameOver == false) && (movesLeft == 0))
+			{
+				cout << ("\nYou won !\n");
+				gameOver = true;
+			}
+		}
+		else if (in == 1) {
+			makeFlag(&x, &y);
+		}
+
+	}
+}
+
+
+void chooseDifficultyLevel()
+{
+
+
+	int level;
+
+	cout << ("Enter the Difficulty Level\n");
+	cout << ("Press 0 for BEGINNER (9 X 9 Cells and 10 Mines)\n");
+	cout << ("Press 1 for INTERMEDIATE (16 X 16 Cells and 40 Mines)\n");
+	cout << ("Press 2 for ADVANCED (24 X 24 Cells and 99 Mines)\n");
+
+	cin >> level;
+
+	if (level == BEGINNER)
+	{
+		SIDE = 9;
+		MINES = 10;
+	}
+
+	if (level == INTERMEDIATE)
+	{
+		SIDE = 16;
+		MINES = 40;
+	}
+
+	if (level == ADVANCED)
+	{
+		SIDE = 24;
+		MINES = 99;
+	}
+}
+int plansza;
+int poz_x;
+int poz_y;
+
+int i;
+int j;
+bool sprawdz_czy_wygrana()
+{
+	int miny = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+
+			miny++;
+		}
+	}
+	if (miny == 10) return true;
+	return false;
+}
+int main()
+{
+	clearFLags();
+
+	chooseDifficultyLevel();
+
+	playMinesweeper();
+
+	sprawdz_czy_wygrana();
+
+	return EXIT_SUCCESS;
+}void placeMines(int mines[][2], char realBoard[][MAXSIDE])
+{
+	bool mark[MAXSIDE * MAXSIDE];
+
+	memset(mark, false, sizeof(mark));
+
+	for (int i = 0; i < MINES; )
+	{
+		int random = rand() % (SIDE * SIDE);
+		int x = random / SIDE;
+		int y = random % SIDE;
+
+		if (mark[random] == false)
+		{
+			mines[i][0] = x;
+			mines[i][1] = y;
+
+			realBoard[mines[i][0]][mines[i][1]] = '*';
+			mark[random] = true;
+			i++;
+		}
+	}
+}
+
+
+void initialise(char realBoard[][MAXSIDE], char myBoard[][MAXSIDE])
+{
+	srand(time(NULL));
+	for (int i = 0; i < SIDE; i++)
+	{
+		for (int j = 0; j < SIDE; j++)
+		{
+			myBoard[i][j] = realBoard[i][j] = '-';
+		}
+	}
+}
+
+
+void replaceMine(int row, int col, char board[][MAXSIDE])
+{
+	for (int i = 0; i < SIDE; i++)
+	{
+		for (int j = 0; j < SIDE; j++)
+		{
+
+			if (board[i][j] != '*')
+			{
+				board[i][j] = '*';
+				board[row][col] = '-';
+			}
+		}
+	}
+}
+
+
+
+
+void playMinesweeper()
+{
+
+	bool gameOver = false;
+
+
+	char realBoard[MAXSIDE][MAXSIDE], myBoard[MAXSIDE][MAXSIDE];
+
+	int movesLeft = SIDE * SIDE - MINES, x, y;
+	int mines[MAXMINES][2];
+
+	initialise(realBoard, myBoard);
+
+
+	placeMines(mines, realBoard);
+
+
+
+	int currentMoveIndex = 0;
+	while (gameOver == false)
+	{
+		system("cls");
+		printBoard(myBoard);
+		int in;
+		cout << "0. zaznacz puste" << endl;
+		cout << "1. zaznacz flage" << endl;
+		cin >> in;
+		if (in == 0) {
+			makeMove(&x, &y);
+			if (currentMoveIndex == 0)
+			{
+				if (isMine(x, y, realBoard) == true)
+					replaceMine(x, y, realBoard);
+			}
+
+			currentMoveIndex++;
+
+			gameOver = playMinesweeperUtil(myBoard, realBoard, mines, x, y, &movesLeft);
+
+			if ((gameOver == false) && (movesLeft == 0))
+			{
+				cout << ("\nYou won !\n");
+				gameOver = true;
+			}
+		}
+		else if (in == 1) {
+			makeFlag(&x, &y);
+		}
+
+	}
+}
+
+
+void chooseDifficultyLevel()
+{
+
+
+	int level;
+
+	cout << ("Enter the Difficulty Level\n");
+	cout << ("Press 0 for BEGINNER (9 X 9 Cells and 10 Mines)\n");
+	cout << ("Press 1 for INTERMEDIATE (16 X 16 Cells and 40 Mines)\n");
+	cout << ("Press 2 for ADVANCED (24 X 24 Cells and 99 Mines)\n");
+
+	cin >> level;
+
+	if (level == BEGINNER)
+	{
+		SIDE = 9;
+		MINES = 10;
+	}
+
+	if (level == INTERMEDIATE)
+	{
+		SIDE = 16;
+		MINES = 40;
+	}
+
+	if (level == ADVANCED)
+	{
+		SIDE = 24;
+		MINES = 99;
+	}
+}
+int plansza;
+int poz_x;
+int poz_y;
+
+int i;
+int j;
+bool sprawdz_czy_wygrana()
+{
+	int miny = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+
+			miny++;
+		}
+	}
+	if (miny == 10) return true;
+	return false;
+}
+int main()
+{
+	clearFLags();
+
+	chooseDifficultyLevel();
+
+	playMinesweeper();
+
+	sprawdz_czy_wygrana();
+
+	return EXIT_SUCCESS;
+}
